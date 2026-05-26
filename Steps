@@ -1,0 +1,6 @@
+Download Etcher and flash into the USB
+  https://etcher.balena.io/#download-etcher
+
+Download Proxmox Virtual Environment then use Etcher and flash onto it.
+  https://www.proxmox.com/en/downloads/proxmox-virtual-environment
+
