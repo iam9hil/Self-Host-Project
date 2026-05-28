@@ -18,8 +18,13 @@ Download Proxmox Virtual Environment then use Etcher and flash onto it.
 *Do this step on your actual pc and browser.
 Next, access your default gateway (find it under your modem)
 Go to DHCP Reservation and select your server IP and reserve it
-________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________________________________________________________
 
+If you do lose connection to Proxmox because it doesn't have the same IP configuration.
+Go back on the self-host machine and run: "ip a" to check if vmbr0 has an IP.
+If not, do = "sudo nano /etc/network/interfaces"
+         add "auto nic0" above "iface nic0 inet manual"
+_____________________________________________________________________________________________________________________________________________________________________________________________________________________
 Now the fun stuff:
 
 - Minecraft Java Server (Fabric) -
@@ -98,3 +103,31 @@ sudo systemctl status minecraft
 
 Finally, reboot the server and check if everything works:
 sudo reboot
+
+**Now this is just on a local level
+______________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Now it will be transformed to a WAN server (This will expose your IP address, be safe :)
+
+Log into your router to Port Forward the server:
+
+Look for Port Forwarding or New Rule
+Internal IP: Choose your server IP
+Protocol: TCP
+Internal & External Port 25565
+
+Go to: https://whatismyip.com (check your public ip)
+
+Server Address to join will be: [public IP address]:25565
+
+______________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+How to add mods?
+
+Manual:
+
+Go to your preferred Minecraft Mod distributor: Modrenth/Forge/etc
+
+Look for mods that are compatible with your server: Fabric/NeoForge/Forge AND game version
+
+
