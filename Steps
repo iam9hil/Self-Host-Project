@@ -65,3 +65,6 @@ echo "eula=true" > eula.txt
 
 To start the server:
 java -Xmx5G -Xms2G -jar fabric-server-launch.jar nogui
+
+Now the server is running:
+Open another Terminal and typer "ip a" to find the ip address to be used
