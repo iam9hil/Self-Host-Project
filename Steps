@@ -36,3 +36,32 @@ Create VM > Node: default > VM ID: default > Name: (Name)
           CPU = Set the cores to 4 (depend on how much you can handle)
           Memory = 4096
           Network = Leave as default
+          Confirm = Finish
+
+To start and install Ubuntu:
+  Left-hand side > 100 (minecraft) > Start > Console
+  Ubuntu installation > Setup it as you need
+
+After setting up and installation
+Terminal: sudo apt update && sudo apt upgrade -y
+
+Install what type of server you want:
+Fabric: sudo apt install openjdk-21-jdk -y
+
+To check what version you have: java -version
+
+Create a folder for Minecraft Server:
+mkdir minecraft-server
+cd minecraft-server
+
+Download the Fabric Server:
+wget https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar
+
+Install the Fabric Installer:
+java -jar fabric-installer-1.0.1.jar server -mcversion 1.21 -downloadMinecraft
+
+Accept the EULA:
+echo "eula=true" > eula.txt
+
+To start the server:
+java -Xmx5G -Xms2G -jar fabric-server-launch.jar nogui
