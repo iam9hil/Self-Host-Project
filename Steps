@@ -27,5 +27,12 @@ Now the fun stuff:
 https://ubuntu.com/download
 -> Download the .ISO
 
-On Proxmox (left hand side)
--> local (Device name) > ISO Images > Upload > Select: Ubuntu ISO
+On Proxmox
+(left hand side) -> local (Device name) > ISO Images > Upload > Select: Ubuntu ISO > Upload it
+Create VM > Node: default > VM ID: default > Name: (Name)
+          Storage: local > ISO Image: Ubuntu > Type: Linux > Version: Latest one
+          System = Leave everything as default
+          Disks = Disk size: set to 40
+          CPU = Set the cores to 4 (depend on how much you can handle)
+          Memory = 4096
+          Network = Leave as default
