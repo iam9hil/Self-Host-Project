@@ -1,33 +1,4 @@
-Download Etcher and flash into the USB
-  https://etcher.balena.io/#download-etcher
-
-Download Proxmox Virtual Environment then use Etcher and flash onto it.
-  https://www.proxmox.com/en/downloads/proxmox-virtual-environment
-
-*NOTE: Keep the password safe. When login in, the username is "root" and whatever your password is.
-*NOTE: If you are connected to Ethernet/Switch and it does not detect it. Run: dhclient -v
-
-(if everytime you boot up the server and the ip address doesn't change or stay the same)
--> Do: nano /etc/network/interfaces
-  -> Change the address and gateway
-     address should be changed to the ip address that was ran on the "dhclient -v"
-     gateway should be changed to the default gateway aka how you access your router page
--> Ctrl X -> Y -> Enter
--> Run: systemctl restart networking
-
-*Do this step on your actual pc and browser.
-Next, access your default gateway (find it under your modem)
-Go to DHCP Reservation and select your server IP and reserve it
-_____________________________________________________________________________________________________________________________________________________________________________________________________________________
-
-If you do lose connection to Proxmox because it doesn't have the same IP configuration.
-Go back on the self-host machine and run: "ip a" to check if vmbr0 has an IP.
-If not, do = "sudo nano /etc/network/interfaces"
-         add "auto nic0" above "iface nic0 inet manual"
-_____________________________________________________________________________________________________________________________________________________________________________________________________________________
-Now the fun stuff:
-
-- Minecraft Java Server (Fabric) -
+- Minecraft Java Server on Proxmox (Fabric) -
 
 https://ubuntu.com/download
 -> Download the .ISO
