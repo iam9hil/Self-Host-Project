@@ -1,11 +1,11 @@
 - Minecraft Java Server on Proxmox (Fabric) -
 
-https://ubuntu.com/download
--> Download the .ISO
+1. https://ubuntu.com/download
+   -> Download the .ISO
 
-On Proxmox
-(left hand side) -> local (Device name) > ISO Images > Upload > Select: Ubuntu ISO > Upload it
-Create VM > Node: default > VM ID: default > Name: (Name)
+2. On Proxmox
+   (left hand side) -> local (Device name) > ISO Images > Upload > Select: Ubuntu ISO > Upload it
+   Create VM > Node: default > VM ID: default > Name: (Name)
           Storage: local > ISO Image: Ubuntu > Type: Linux > Version: Latest one
           System = Leave everything as default
           Disks = Disk size: set to 40
@@ -14,102 +14,102 @@ Create VM > Node: default > VM ID: default > Name: (Name)
           Network = Leave as default
           Confirm = Finish
 
-To start and install Ubuntu:
+3. To start and install Ubuntu:
   Left-hand side > 100 (minecraft) > Start > Console
   Ubuntu installation > Setup it as you need
 
-After setting up and installation
-Terminal: sudo apt update && sudo apt upgrade -y
+4. After setting up and installation
+   Terminal: sudo apt update && sudo apt upgrade -y
 
-Install what type of server you want:
-Fabric: sudo apt install openjdk-21-jdk -y
+5. Install what type of server you want:
+   Fabric: sudo apt install openjdk-21-jdk -y
 
-To check what version you have: java -version
+5. To check what version you have: java -version
 
-Create a folder for Minecraft Server:
-mkdir minecraft-server
-cd minecraft-server
+6. Create a folder for Minecraft Server:
+   mkdir minecraft-server
+   cd minecraft-server
 
-Download the Fabric Server:
-wget https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar
+7. Download the Fabric Server:
+   wget https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar
 
-Install the Fabric Installer:
-java -jar fabric-installer-1.0.1.jar server -mcversion 1.21 -downloadMinecraft
+8. Install the Fabric Installer:
+   java -jar fabric-installer-1.0.1.jar server -mcversion 1.21 -downloadMinecraft
 
-Accept the EULA:
-echo "eula=true" > eula.txt
+9. Accept the EULA:
+   echo "eula=true" > eula.txt
 
-To start the server:
-java -Xmx5G -Xms2G -jar fabric-server-launch.jar nogui
+10. To start the server:
+    java -Xmx5G -Xms2G -jar fabric-server-launch.jar nogui
 
-Now the server is running:
-Open another Terminal and typer "ip a" to find the ip address to be used
+11. Now the server is running:
+    Open another Terminal and typer "ip a" to find the ip address to be used
 
-How to stop: Type "stop" in the game server Terminal
+12. How to stop: Type "stop" in the game server Terminal
 
-How to make the server run automatically:
-sudo nano /etc/systemd/system/minecraft.service
-| | | | | | | | Enter it in | | | | | | | | |
-V V V V V V V V             V V V V V V V V V
-[Unit]
-Description=Minecraft Fabric Server
-After=network.target
+13. How to make the server run automatically:
+    sudo nano /etc/systemd/system/minecraft.service
+    | | | | | | | | Enter it in | | | | | | | | |
+    V V V V V V V V             V V V V V V V V V
+    [Unit]
+    Description=Minecraft Fabric Server
+    After=network.target
 
-[Service]
-User=minecraft
-WorkingDirectory=/home/minecraft/minecraft-server
-ExecStart=java -Xmx5G -Xms2G -jar fabric-server-launch.jar nogui
-Restart=on-failure
+    [Service]
+    User=minecraft
+    WorkingDirectory=/home/minecraft/minecraft-server
+    ExecStart=java -Xmx5G -Xms2G -jar fabric-server-launch.jar nogui
+    Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
+    [Install]
+    WantedBy=multi-user.target
 
-Run these commands to reload, start on boot, and start it immediately.
-sudo systemctl daemon-reload
-sudo systemctl enable minecraft
-sudo systemctl start minecraft
+14. Run these commands to reload, start on boot, and start it immediately.
+    sudo systemctl daemon-reload
+    sudo systemctl enable minecraft
+    sudo systemctl start minecraft
 
-Check server status:
+15. Check server status:
 sudo systemctl status minecraft
 
-Finally, reboot the server and check if everything works:
+16. Finally, reboot the server and check if everything works:
 sudo reboot
 
-**Now this is just on a local level
+**Now this is playable on the local level
 ______________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 Now it will be transformed to a WAN server (This will expose your IP address, be safe :)
 
-Log into your router to Port Forward the server:
+1. Log into your router to Port Forward the server:
 
-Look for Port Forwarding or New Rule
+2. Look for Port Forwarding or New Rule
 Internal IP: Choose your server IP
 Protocol: TCP
 Internal & External Port 25565
 
-Go to: https://whatismyip.com (check your public ip)
+3. Go to: https://whatismyip.com (check your public ip)
 
-Server Address to join will be: [public IP address]:25565
+4. Server Address to join will be: [public IP address]:25565
 
 ______________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 How to add mods? **Make sure they are .jar files**
 
-Go to your preferred Minecraft Mod distributor: Modrenth/Forge/etc
+1. Go to your preferred Minecraft Mod distributor: Modrenth/Forge/etc
 
-Look for mods that are compatible with your server: Fabric/NeoForge/Forge AND game version
+2. Look for mods that are compatible with your server: Fabric/NeoForge/Forge AND game version
 
-Download the .jar files
+3. Download the .jar files
 
-On the Proxmox Ubuntu VM, open the Terminal:
+4. On the Proxmox Ubuntu VM, open the Terminal:
 
-(Stops the minecraft server)
+5. (Stops the minecraft server)
 sudo systemctl stop minecraft 
 
-(Make a new directory to upload the mods)
+6. (Make a new directory to upload the mods)
 mkdir -p /home/minecraft/minecraft-server/mods
 
-(Go back to your actual computer and download the mod that fits your version and type)
+7. (Go back to your actual computer and download the mod that fits your version and type)
 Use this prompt for in the Command Prompt:
 scp C:\Users\Username\Downloads\modfile.jar minecraft@privateIPaddress:/home/minecraft/minecraft-server/mods/
 
